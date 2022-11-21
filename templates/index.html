@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <!-- Head-->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Classification - Prediction</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+	 <!-- End of Head-->
+	 
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-dark bg-dark static-top">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Classification</a>
+                <a class="navbar-brand" href="#about">Mathematics</a>
+                <a class="navbar-brand" href="#about">About</a>
+                <a class="navbar-brand" href="#about">Home</a>
+            </div>
+        </nav>
+        <!-- Masthead-->
+      
+				<div class="container position-relative">
+					<div class="row justify-content-center">
+						<div class="col-xl-100">
+							<div class="center-header">
+                                <!-- Page heading-->
+                                <table>
+                                <form action="{{ url_for('predict')}}" method="post">
+                                <tr>
+
+                            <th>
+								<div class="form-group mx-sm-3 mb-2">
+								<h4 class="mb-1 top-header">Enter Age</h4>
+								</div>
+							<div class="form-inline" id="frm">
+							<div class="form-group mx-sm-3 mb-2">
+								<label for="ageinput" class="sr-only">Age</label>
+								<input type="number" name="ageinput" class="form-control form-control-md input-budget" id="ageinput" required  placeholder="Enter Age" >
+								</div>
+							</div>
+                            </th>
+
+                            <th>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <h4 align="center" class="mb-1 top-header">Enter Gender</h4>
+                                </div>
+                                <div class="form-inline" id="frm">
+                                    <div class="form-group mx-auto mb-2">
+                                        <label for="genderinput" class="sr-only">Gender</label>
+                                        <select class="form-control" name= "genderinput" id="genderinput">
+                                            <option value="male">Male</option>  
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </th>
+
+                            <th>
+								<div class="form-group mx-sm-3 mb-2">
+								<h4 class="mb-1 top-header">Enter BMI</h4>
+								</div>
+							<div class="form-inline" id="frm">
+							<div class="form-group mx-sm-3 mb-2">
+								<label for="bmiinput" class="sr-only">BMI</label>
+								<input type="number" name="bmiinput" class="form-control form-control-md input-budget" id="bmiinput" required  placeholder="Enter BMI" >
+								</div>
+							</div>
+                            </th>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                    <h4 class="mb-1 top-header">Enter Children</h4>
+                                    </div>
+                                <div class="form-inline" id="frm">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <label for="childinput" class="sr-only">Children</label>
+                                    <input type="number" name="childinput" class="form-control form-control-md input-budget" id="childinput" required  placeholder="Enter number of children" >
+                                    </div>
+                                </div>
+                                </th>
+
+                                <th>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                        <h4 align="center" class="mb-1 top-header">Enter Smoking</h4>
+                                    </div>
+                                    <div class="form-inline" id="frm">
+                                        <div class="form-group mx-auto mb-2">
+                                            <label for="smokinginput" class="sr-only">Smoking</label>
+                                            <select class="form-control" name= "smokinginput" id="smokinginput">
+                                                <option value="yes">YES</option>  
+                                                <option value="no">NO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                        <h4 align="center" class="mb-1 top-header">Enter Region</h4>
+                                    </div>
+                                    <div class="form-inline" id="frm">
+                                        <div class="form-group mx-auto mb-2">
+                                            <label for="regioninput" class="sr-only">Region</label>
+                                            <select class="form-control" name= "regioninput" id="regioninput">
+                                                <option value="southwest">Southwest</option>  
+                                                <option value="southeast">Southeast</option>
+                                                <option value="northwest">Northwest</option>
+                                                <option value="northeast">Northeast</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </th>
+
+                            </tr>
+                            </table>
+
+                            <div class="text-center">
+                                <button  class="btn btn-dark " onclick='fillItem()'  >Predict</button>
+                            </div>
+                        </form>
+                        <br>
+						</div>
+					</div>
+				</div>
+        
+        <!-- Icons Grid-->
+        <section class="features-icons bg-light text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-digits"><i class="bi bi-clipboard-check m-auto text-primary"></i></div>
+                            <h3>Age</h3>
+                            <p class="lead mb-0">Age provided!</p>
+							<h3 id='sectionAge'> {{ age }} </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi bi-clipboard-check m-auto text-primary"></i></div>
+                            <h3>Gender</h3>
+                            <p class="lead mb-0">Gender provided!</p>
+							<h3 id='sectionGender'> {{ gender }} </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi bi-clipboard-check m-auto text-primary"></i></div>
+                            <h3>BMI</h3>
+                            <p class="lead mb-0">BMI provided!</p>
+							<h3 id='sectionBMI'> {{ bmi }} </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi bi-clipboard-check m-auto text-primary"></i></div>
+                            <h3>Children</h3>
+                            <p class="lead mb-0">Number Children provided!</p>
+							<h3 id='sectionChild'> {{ child }} </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi bi-clipboard-check m-auto text-primary"></i></div>
+                            <h3>Smoking</h3>
+                            <p class="lead mb-0">Smoking provided!</p>
+							<h3 id='sectionSmoking'> {{ smoking }} </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi bi-clipboard-check m-auto text-primary"></i></div>
+                            <h3>region</h3>
+                            <p class="lead mb-0">Region provided!</p>
+							<h3 id='sectionRegion'> {{ region }} </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="features-icons bg-light text-center">
+            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                <h3>Predicted Value</h3>
+                <p class="lead mb-0">Price Predicted!</p>
+                <h3 id='sectionPredicted' >
+                    {{ prediction_text }}
+                </h3>
+            </div>
+        </div>
+        </section>
+        <!-- Image Showcases-->
+ <!-- Icons Grid-->
+       
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+		<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+		<script>	
+        let fillItem = () =>
+        {
+            if($('#ageinput').val() <= 0 || $('#ageinput').val() >= 120)
+            {
+                //set border color to the invalid input
+                $('#ageinput').attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
+                alert("Invalid Value Of Age Value. There are no body have that such kind of age!");
+            }
+            else if($('#bmiinput').val() <= 0 || $('#bmiinput').val() >= 200)
+            {
+                //set border color to the invalid input
+                $('#bmiinput').attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
+                alert("Invalid Value Of BMI Value. There are no body have that such kind of BMI!");
+            }
+            else if($('#childinput').val() < 0)
+            {
+                //set border color to the invalid input
+                $('#childinput').attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
+                alert("Invalid Value Of Children Value. What did you just give me?");
+            }
+            else
+            {
+                //set border color to the valid input
+                $('#ageinput').attr('style', "border-radius: 1px; border:#00ff08 1px solid;");
+                $('#genderinput').attr('style', "border-radius: 1px; border:#00ff08 1px solid;");
+                $('#bmiinput').attr('style', "border-radius: 1px; border:#00ff08 1px solid;");
+                $('#childinput').attr('style', "border-radius: 1px; border:#00ff08 1px solid;");
+                $('#smokinginput').attr('style', "border-radius: 1px; border:#00ff08 1px solid;");
+                $('#regioninput').attr('style', "border-radius: 1px; border:#00ff08 1px solid;");
+            } 
+        }
+		</script>
+
+    </body>
+</html>
