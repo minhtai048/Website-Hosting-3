@@ -1,13 +1,3 @@
-# https://youtu.be/l3QVYnMD128
-"""
-Application that predicts heart disease percentage in the population of a town
-based on the number of bikers and smokers. 
-Trained on the data set of percentage of people biking 
-to work each day, the percentage of people smoking, and the percentage of 
-people with heart disease in an imaginary sample of 500 towns.
-"""
-
-
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -52,7 +42,6 @@ def inverse_transform(x, lmbda):
 def home():
     return render_template('index.html')
 
-#You can use the methods argument of the route() decorator to handle different HTTP methods.
 #GET: A GET message is send, and the server returns data
 #POST: Used to send HTML form data to the server.
 #Add Post method to the decorator to allow for form submission. 
@@ -92,14 +81,6 @@ def predict():
     #final section -> send data back to front page
     return render_template('index.html', age=ageinput, gender=gender_display, bmi=bmiinput, child=childinput,
                         smoking=smokinginput, region=regioninput, prediction_text= prediction)
-
-#When the Python interpreter reads a source file, it first defines a few special variables. 
-#For now, we care about the __name__ variable.
-#If we execute our code in the main program, like in our case here, it assigns
-# __main__ as the name (__name__). 
-#So if we want to run our code right here, we can check if __name__ == __main__
-#if so, execute it here. 
-#If we import this file (module) to another file then __name__ == app (which is the name of this python file).
 
 if __name__ == "__main__":
     app.run()
